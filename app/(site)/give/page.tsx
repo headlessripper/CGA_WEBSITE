@@ -43,9 +43,9 @@ const otherWays = [
     Icon: Building2,
     title: "Bank transfer",
     lines: [
-      "Bank: — ", // PLACEHOLDER
+      "Bank: FCMB", // PLACEHOLDER
       "Account name: Centre of Grace Assembly",
-      "Account number: —",
+      "Account number: 0591050012",
     ],
   },
 ];

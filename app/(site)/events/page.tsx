@@ -12,7 +12,7 @@ import { fetchContent, fetchUpcomingEvents } from "@/lib/appwrite-server";
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "Everything happening at Centre of Grace Assembly — gatherings, outreach, training and special nights.",
+    "Everything happening at Centre of Grace Assembly, gatherings, outreach, training and special nights.",
 };
 
 export const dynamic = "force-dynamic";
