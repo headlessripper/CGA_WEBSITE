@@ -153,11 +153,15 @@ middleware.ts             Clerk route protection
 
 ---
 
-## Notes & remaining template content
+## Notes
 
-- The **About page** team, beliefs and FAQs still come from `lib/site.ts` (not
-  yet in the content editor) — extend the `content` model and editor the same
-  way the other sections work when you want them editable.
+- **Everything on the public pages is editable from Studio → Content**, including
+  the whole About page (story, values, leadership, beliefs, FAQs).
+- **Managing the template:** a fresh database shows the read-only seed. In
+  Studio → Messages / Events, click **"Import the template"** to copy it into the
+  database as real records you can edit, reorder and delete. (Editing a single
+  seed item without importing would drop the rest, since the fallback is
+  all-or-nothing — hence the explicit import.)
 - Stock imagery is from Unsplash; swap for real church photography.
 - Search the repo for `PLACEHOLDER` for the last few hard-coded values
   (mobile-money / bank details on the Give page).

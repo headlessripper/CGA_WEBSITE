@@ -17,6 +17,7 @@ const SECTIONS: { key: ContentSection; label: string }[] = [
   { key: "home", label: "Home hero" },
   { key: "serviceTimes", label: "Service times" },
   { key: "connect", label: "Connect plan" },
+  { key: "about", label: "About page" },
 ];
 
 export function ContentEditor({ content }: { content: SiteContent }) {
@@ -49,6 +50,7 @@ export function ContentEditor({ content }: { content: SiteContent }) {
           <ServiceTimesForm value={content.serviceTimes} />
         )}
         {active === "connect" && <ConnectForm value={content.connect} />}
+        {active === "about" && <AboutForm value={content.about} />}
       </div>
     </div>
   );
@@ -413,6 +415,164 @@ function ConnectForm({ value }: { value: SiteContent["connect"] }) {
         >
           <Plus className="mr-2 h-4 w-4" /> Add a step
         </Button>
+      </div>
+
+      <SaveBar status={status} error={error} onSave={() => save(v)} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------- about page ---- */
+
+function ListItem({
+  index,
+  label,
+  onRemove,
+  children,
+}: {
+  index: number;
+  label: string;
+  onRemove: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-xl border border-border/70 bg-card p-5">
+      <div className="mb-3 flex items-center justify-between">
+        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {label} {index + 1}
+        </span>
+        <button
+          type="button"
+          onClick={onRemove}
+          className="text-muted-foreground hover:text-destructive"
+        >
+          <Trash2 className="h-4 w-4" />
+        </button>
+      </div>
+      <div className="space-y-3">{children}</div>
+    </div>
+  );
+}
+
+function AddButton({ label, onClick }: { label: string; onClick: () => void }) {
+  return (
+    <Button type="button" variant="outline" onClick={onClick} className="rounded-full">
+      <Plus className="mr-2 h-4 w-4" /> {label}
+    </Button>
+  );
+}
+
+function AboutForm({ value }: { value: SiteContent["about"] }) {
+  const [v, setV] = useState(value);
+  const { status, error, save } = useSaver("about");
+
+  // Generic helpers for the repeatable arrays.
+  function updateList<K extends "values" | "leadership" | "beliefs" | "faqs">(
+    key: K,
+    i: number,
+    patch: Partial<SiteContent["about"][K][number]>,
+  ) {
+    setV((c) => ({
+      ...c,
+      [key]: c[key].map((row, idx) => (idx === i ? { ...row, ...patch } : row)),
+    }));
+  }
+  function removeAt<K extends "values" | "leadership" | "beliefs" | "faqs">(
+    key: K,
+    i: number,
+  ) {
+    setV((c) => ({ ...c, [key]: c[key].filter((_, idx) => idx !== i) }));
+  }
+
+  return (
+    <div className="max-w-2xl space-y-8">
+      <div className="space-y-5">
+        <Field
+          label="Header title"
+          value={v.headerTitle}
+          onChange={(headerTitle) => setV((c) => ({ ...c, headerTitle }))}
+        />
+        <Field
+          label="Header description"
+          value={v.headerDescription}
+          onChange={(headerDescription) => setV((c) => ({ ...c, headerDescription }))}
+          textarea
+        />
+        <div className="space-y-2">
+          <Label>Story paragraphs (one per line)</Label>
+          <Textarea
+            value={v.story.join("\n\n")}
+            onChange={(e) =>
+              setV((c) => ({
+                ...c,
+                story: e.target.value.split("\n").map((s) => s.trim()).filter(Boolean),
+              }))
+            }
+            rows={6}
+          />
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h4 className="font-display text-lg font-semibold">Values</h4>
+        {v.values.map((row, i) => (
+          <ListItem key={i} index={i} label="Value" onRemove={() => removeAt("values", i)}>
+            <Field label="Title" value={row.title} onChange={(title) => updateList("values", i, { title })} />
+            <Field label="Body" value={row.body} textarea onChange={(body) => updateList("values", i, { body })} />
+          </ListItem>
+        ))}
+        <AddButton
+          label="Add a value"
+          onClick={() => setV((c) => ({ ...c, values: [...c.values, { title: "", body: "" }] }))}
+        />
+      </div>
+
+      <div className="space-y-4">
+        <h4 className="font-display text-lg font-semibold">Leadership</h4>
+        {v.leadership.map((row, i) => (
+          <ListItem key={i} index={i} label="Leader" onRemove={() => removeAt("leadership", i)}>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Field label="Name" value={row.name} onChange={(name) => updateList("leadership", i, { name })} />
+              <Field label="Role" value={row.role} onChange={(role) => updateList("leadership", i, { role })} />
+            </div>
+            <Field label="Photo URL" value={row.image} onChange={(image) => updateList("leadership", i, { image })} />
+            <Field label="Bio" value={row.bio} textarea onChange={(bio) => updateList("leadership", i, { bio })} />
+          </ListItem>
+        ))}
+        <AddButton
+          label="Add a leader"
+          onClick={() =>
+            setV((c) => ({ ...c, leadership: [...c.leadership, { name: "", role: "", bio: "", image: "" }] }))
+          }
+        />
+      </div>
+
+      <div className="space-y-4">
+        <h4 className="font-display text-lg font-semibold">What we believe</h4>
+        {v.beliefs.map((row, i) => (
+          <ListItem key={i} index={i} label="Belief" onRemove={() => removeAt("beliefs", i)}>
+            <Field label="Title" value={row.title} onChange={(title) => updateList("beliefs", i, { title })} />
+            <Field label="Body" value={row.body} textarea onChange={(body) => updateList("beliefs", i, { body })} />
+          </ListItem>
+        ))}
+        <AddButton
+          label="Add a belief"
+          onClick={() => setV((c) => ({ ...c, beliefs: [...c.beliefs, { title: "", body: "" }] }))}
+        />
+      </div>
+
+      <div className="space-y-4">
+        <h4 className="font-display text-lg font-semibold">FAQs</h4>
+        {v.faqs.map((row, i) => (
+          <ListItem key={i} index={i} label="FAQ" onRemove={() => removeAt("faqs", i)}>
+            <Field label="Question" value={row.q} onChange={(q) => updateList("faqs", i, { q })} />
+            <Field label="Answer" value={row.a} textarea onChange={(a) => updateList("faqs", i, { a })} />
+          </ListItem>
+        ))}
+        <AddButton
+          label="Add an FAQ"
+          onClick={() => setV((c) => ({ ...c, faqs: [...c.faqs, { q: "", a: "" }] }))}
+        />
       </div>
 
       <SaveBar status={status} error={error} onSave={() => save(v)} />

@@ -13,38 +13,28 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/site/page-header";
 import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
-import { beliefs, faqs, leadership, site } from "@/lib/site";
+import { fetchContent } from "@/lib/appwrite-server";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `Who we are, what we believe and who leads ${site.name}.`,
+  description: "Who we are, what we believe and who leads the church.",
 };
 
-const values = [
-  {
-    Icon: Heart,
-    title: "Grace first",
-    body: "We lead with what God has done, not with what people should do. Every other value follows from that one.",
-  },
-  {
-    Icon: Users,
-    title: "Family, not audience",
-    body: "You are not a number on a Sunday. We know names, we share meals, we show up when things fall apart.",
-  },
-  {
-    Icon: Compass,
-    title: "Sent, not settled",
-    body: "The doors swing both ways. What we receive on Sunday is meant for the neighbourhood on Monday.",
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function AboutPage() {
+// A small rotating icon set so added values still get an icon.
+const valueIcons = [Heart, Users, Compass];
+
+export default async function AboutPage() {
+  const { about } = await fetchContent();
+  const { leadership, beliefs, faqs, values, story } = about;
+
   return (
     <>
       <PageHeader
         eyebrow="Our story"
-        title="A living room, a kettle, and a stubborn hope"
-        description="Centre of Grace Assembly began in 2009 with nine people in a living room. What has changed since then is the size of the room. What has not changed is why we gather."
+        title={about.headerTitle}
+        description={about.headerDescription}
       />
 
       {/* ---------------------------------------------------------- story */}
@@ -64,22 +54,9 @@ export default function AboutPage() {
 
           <Reveal direction="left" delay={0.1}>
             <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              <p>
-                We are a church that believes the gospel is genuinely good news
-                — not a set of demands with a smile on top. Grace found us
-                first, and it keeps finding us on the days we least deserve it.
-              </p>
-              <p>
-                On a Sunday you will find full-hearted worship, a message that
-                takes the Bible seriously without taking itself too seriously,
-                and a long, loud coffee queue afterwards that nobody is in a
-                hurry to leave.
-              </p>
-              <p>
-                Through the week we are in homes, on campuses, in hospital
-                wards and in the market — because a church that only exists on
-                Sunday is not really a church at all.
-              </p>
+              {story.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -102,19 +79,24 @@ export default function AboutPage() {
             title="Three things we keep coming back to"
           />
           <Stagger className="mt-14 grid gap-6 md:grid-cols-3">
-            {values.map(({ Icon, title, body }) => (
-              <StaggerItem key={title} className="h-full">
-                <div className="h-full rounded-2xl border border-border/70 bg-card p-8 transition-colors hover:border-gold/40">
-                  <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 text-gold">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="font-display text-xl font-semibold">{title}</h3>
-                  <p className="mt-3 leading-relaxed text-muted-foreground">
-                    {body}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
+            {values.map((value, i) => {
+              const Icon = valueIcons[i % valueIcons.length];
+              return (
+                <StaggerItem key={i} className="h-full">
+                  <div className="h-full rounded-2xl border border-border/70 bg-card p-8 transition-colors hover:border-gold/40">
+                    <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 text-gold">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="font-display text-xl font-semibold">
+                      {value.title}
+                    </h3>
+                    <p className="mt-3 leading-relaxed text-muted-foreground">
+                      {value.body}
+                    </p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
           </Stagger>
         </div>
       </section>

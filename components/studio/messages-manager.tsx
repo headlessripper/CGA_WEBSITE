@@ -7,6 +7,7 @@ import { Headphones, Loader2, Pencil, Star, Trash2, Video, X } from "lucide-reac
 
 import { Button } from "@/components/ui/button";
 import { MessageComposer } from "@/components/site/message-composer";
+import { ImportTemplateBanner } from "@/components/studio/import-template-banner";
 import { deleteMessageAction } from "@/app/studio/actions";
 import type { Message } from "@/lib/messages";
 import { cn, formatShortDate } from "@/lib/utils";
@@ -64,14 +65,11 @@ export function MessagesManager({
 
   return (
     <div>
+      {!fromDatabase && <ImportTemplateBanner what="messages" />}
+
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
           {messages.length} {messages.length === 1 ? "message" : "messages"}
-          {!fromDatabase && (
-            <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-xs">
-              showing template seed — publish one to start your library
-            </span>
-          )}
         </p>
       </div>
 
@@ -108,7 +106,7 @@ export function MessagesManager({
                   size="icon"
                   variant="ghost"
                   disabled={!m.id}
-                  title={m.id ? "Edit" : "Seed items can't be edited — publish first"}
+                  title={m.id ? "Edit" : "Import the template above to edit"}
                   onClick={() => setEditing(m)}
                   className="h-9 w-9 rounded-full"
                 >

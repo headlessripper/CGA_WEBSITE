@@ -1,4 +1,10 @@
-import { serviceTimes as seedServiceTimes, site as seedSite } from "@/lib/site";
+import {
+  beliefs as seedBeliefs,
+  faqs as seedFaqs,
+  leadership as seedLeadership,
+  serviceTimes as seedServiceTimes,
+  site as seedSite,
+} from "@/lib/site";
 
 /**
  * Editable site content.
@@ -26,6 +32,23 @@ export interface ConnectStep {
   body: string;
 }
 
+export interface TitleBody {
+  title: string;
+  body: string;
+}
+
+export interface LeaderContent {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+}
+
+export interface Faq {
+  q: string;
+  a: string;
+}
+
 export interface SiteContent {
   site: {
     name: string;
@@ -50,6 +73,15 @@ export interface SiteContent {
     title: string;
     description: string;
     plan: ConnectStep[];
+  };
+  about: {
+    headerTitle: string;
+    headerDescription: string;
+    story: string[];
+    values: TitleBody[];
+    leadership: LeaderContent[];
+    beliefs: TitleBody[];
+    faqs: Faq[];
   };
 }
 
@@ -103,6 +135,33 @@ export const defaultContent: SiteContent = {
         body: "Join a small group and, when you are ready, a team to serve on. That is where church stops being a service you attend and becomes a family you belong to.",
       },
     ],
+  },
+  about: {
+    headerTitle: "A living room, a kettle, and a stubborn hope",
+    headerDescription:
+      "Centre of Grace Assembly began in 2009 with nine people in a living room. What has changed since then is the size of the room. What has not changed is why we gather.",
+    story: [
+      "We are a church that believes the gospel is genuinely good news — not a set of demands with a smile on top. Grace found us first, and it keeps finding us on the days we least deserve it.",
+      "On a Sunday you will find full-hearted worship, a message that takes the Bible seriously without taking itself too seriously, and a long, loud coffee queue afterwards that nobody is in a hurry to leave.",
+      "Through the week we are in homes, on campuses, in hospital wards and in the market — because a church that only exists on Sunday is not really a church at all.",
+    ],
+    values: [
+      {
+        title: "Grace first",
+        body: "We lead with what God has done, not with what people should do. Every other value follows from that one.",
+      },
+      {
+        title: "Family, not audience",
+        body: "You are not a number on a Sunday. We know names, we share meals, we show up when things fall apart.",
+      },
+      {
+        title: "Sent, not settled",
+        body: "The doors swing both ways. What we receive on Sunday is meant for the neighbourhood on Monday.",
+      },
+    ],
+    leadership: seedLeadership.map((l) => ({ ...l })),
+    beliefs: seedBeliefs.map((b) => ({ ...b })),
+    faqs: seedFaqs.map((f) => ({ ...f })),
   },
 };
 

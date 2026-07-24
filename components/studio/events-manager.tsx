@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { ImportTemplateBanner } from "@/components/studio/import-template-banner";
 import { createEventAction, deleteEventAction } from "@/app/studio/actions";
 import type { ChurchEvent } from "@/lib/events";
 import { cn, formatShortDate } from "@/lib/utils";
@@ -147,14 +148,8 @@ export function EventsManager({
       </div>
 
       <div>
-        <h3 className="mb-4 font-display text-lg font-semibold">
-          Events{" "}
-          {!fromDatabase && (
-            <span className="ml-1 rounded-full bg-muted px-2 py-0.5 text-xs font-normal">
-              template seed
-            </span>
-          )}
-        </h3>
+        <h3 className="mb-4 font-display text-lg font-semibold">Events</h3>
+        {!fromDatabase && <ImportTemplateBanner what="events" />}
         <div className="space-y-3">
           <AnimatePresence initial={false}>
             {events.map((e) => (
@@ -176,7 +171,7 @@ export function EventsManager({
                   size="icon"
                   variant="ghost"
                   disabled={!e.id || busyId === e.id}
-                  title={e.id ? "Delete" : "Seed items can't be deleted"}
+                  title={e.id ? "Delete" : "Import the template above to delete"}
                   onClick={() => remove(e)}
                   className="h-9 w-9 shrink-0 rounded-full hover:bg-destructive/10 hover:text-destructive"
                 >

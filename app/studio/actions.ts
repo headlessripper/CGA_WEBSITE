@@ -12,6 +12,7 @@ import {
   deleteConnection,
   deleteEventRecord,
   deleteMessageRecord,
+  importTemplate,
   saveContentSection,
   updateConnectionStatus,
   updateMessageRecord,
@@ -123,6 +124,17 @@ export async function deleteConnectionAction(id: string): Promise<ActionResult> 
     await requireAuth();
     await deleteConnection(id);
     revalidatePath("/studio");
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : "Failed" };
+  }
+}
+
+export async function importTemplateAction(): Promise<ActionResult> {
+  try {
+    await requireAuth();
+    await importTemplate();
+    revalidateSite();
     return { ok: true };
   } catch (err) {
     return { ok: false, error: err instanceof Error ? err.message : "Failed" };

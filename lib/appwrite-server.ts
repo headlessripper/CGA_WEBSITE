@@ -170,6 +170,50 @@ export async function deleteMessageRecord(id: string) {
   return db().deleteDocument(DB, collections.messages, id);
 }
 
+/**
+ * Copies the in-repo seed library into the database, but only into collections
+ * that are still empty — so the team gets real, editable records to work from
+ * instead of the read-only template fallback. Safe to call repeatedly.
+ */
+export async function importTemplate(): Promise<{
+  messages: number;
+  events: number;
+}> {
+  const database = db();
+  let messagesAdded = 0;
+  let eventsAdded = 0;
+
+  const existingMessages = await database.listDocuments(DB, collections.messages, [
+    Query.limit(1),
+  ]);
+  if (existingMessages.total === 0) {
+    for (const [i, m] of seedMessages.entries()) {
+      await database.createDocument(DB, collections.messages, ID.unique(), {
+        ...messageToDoc(m),
+        order: i,
+      });
+      messagesAdded++;
+    }
+  }
+
+  const existingEvents = await database.listDocuments(DB, collections.events, [
+    Query.limit(1),
+  ]);
+  if (existingEvents.total === 0) {
+    for (const e of seedEvents) {
+      await database.createDocument(
+        DB,
+        collections.events,
+        ID.unique(),
+        eventToDoc(e),
+      );
+      eventsAdded++;
+    }
+  }
+
+  return { messages: messagesAdded, events: eventsAdded };
+}
+
 /* ============================================================== events ==== */
 
 function docToEvent(d: Doc): ChurchEvent {
