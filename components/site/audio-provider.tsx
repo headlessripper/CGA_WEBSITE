@@ -59,7 +59,7 @@ export function useAudio() {
 /**
  * One <audio> element for the whole site, driven from context.
  *
- * Audio keeps playing while you browse — which is the whole point for a church
+ * Audio keeps playing while you browse which is the whole point for a church
  * podcast: people put a message on and then go read about a ministry.
  */
 export function AudioProvider({ children }: { children: React.ReactNode }) {
@@ -334,7 +334,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Decorative level meter — mirrors play state, not the actual waveform. */
+/** Decorative level meter mirrors play state, not the actual waveform. */
 export function Equalizer({
   active,
   className,

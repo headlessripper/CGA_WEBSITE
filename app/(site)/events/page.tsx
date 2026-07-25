@@ -41,7 +41,7 @@ export default async function EventsPage() {
       <PageHeader
         eyebrow="What's on"
         title="More than Sundays"
-        description="Some of the best moments of church life happen between services. Everything here is open — bring a friend, or come on your own and leave with a few."
+        description="Some of the best moments of church life happen between services. Everything here is open bring a friend, or come on your own and leave with a few."
       />
 
       {/* --------------------------------------------------- weekly rhythm */}
@@ -49,7 +49,7 @@ export default async function EventsPage() {
         <Reveal>
           <h2 className="font-display text-2xl font-semibold">Weekly rhythm</h2>
           <p className="mt-2 text-muted-foreground">
-            These happen every week — no registration, no sign-up.
+            These happen every week no registration, no sign-up.
           </p>
         </Reveal>
 

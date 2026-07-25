@@ -53,7 +53,7 @@ function secondsToDuration(total: number) {
 /**
  * Publishes a message straight to the Appwrite database. Handed the file ids of
  * whatever was just uploaded, it builds the playback URLs, writes the record,
- * and the message goes live across the site — no code edit, no redeploy.
+ * and the message goes live across the site no code edit, no redeploy.
  */
 export function MessageComposer({
   uploads,
@@ -343,7 +343,7 @@ export function MessageComposer({
 
           {!configured && (
             <p className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-xs text-muted-foreground">
-              Appwrite public config missing — playback URLs can&apos;t be built.
+              Appwrite public config missing playback URLs can&apos;t be built.
             </p>
           )}
 

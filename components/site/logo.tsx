@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * The CGA emblem: a cross rising over the globe, cradled by the open Word.
- * A single-material gold mark — a calmer, refined take on the church's symbols
+ * A single-material gold mark a calmer, refined take on the church's symbols
  * (world, cross, scripture) without the clashing colours of the original.
  * Pure SVG so it stays crisp everywhere.
  */

@@ -195,7 +195,7 @@ async function run() {
         ],
         undefined, // fileSecurity
         true, // enabled
-        undefined, // maximumFileSize — leave as configured in console
+        undefined, // maximumFileSize leave as configured in console
         undefined,
         undefined,
         undefined,
@@ -204,7 +204,7 @@ async function run() {
       ),
     );
   } else {
-    console.log("  • no bucket id set — skipping");
+    console.log("  • no bucket id set skipping");
   }
 
   console.log("\nDone.");

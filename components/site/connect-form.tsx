@@ -74,7 +74,7 @@ export function ConnectForm() {
               <CheckCircle2 className="h-8 w-8" />
             </motion.span>
             <h3 className="font-display text-2xl font-semibold">
-              Thank you — we&apos;ve got it
+              Thank you we&apos;ve got it
             </h3>
             <p className="mx-auto mt-3 max-w-sm text-muted-foreground">
               Someone from the team will be in touch within a couple of days. If

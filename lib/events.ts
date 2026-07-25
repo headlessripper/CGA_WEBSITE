@@ -16,13 +16,13 @@ export interface ChurchEvent {
 export const events: ChurchEvent[] = [
   {
     slug: "night-of-grace-august",
-    title: "Night of Grace — August",
+    title: "Night of Grace August",
     start: "2026-08-07T19:00:00+00:00",
     end: "2026-08-07T22:00:00+00:00",
     location: "Main Auditorium",
     category: "Special",
     description:
-      "Three hours of unhurried worship, testimony and prayer. Doors open at 6:30 PM. Everyone welcome — bring someone with you.",
+      "Three hours of unhurried worship, testimony and prayer. Doors open at 6:30 PM. Everyone welcome bring someone with you.",
     image:
       "https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?auto=format&fit=crop&w=1400&q=70",
   },
@@ -94,7 +94,7 @@ export const events: ChurchEvent[] = [
 /** Fallback list, used when the Appwrite `events` collection is empty. */
 export const seedEvents: ChurchEvent[] = events;
 
-/** Upcoming (not-yet-ended) events, soonest first — pure, on any list. */
+/** Upcoming (not-yet-ended) events, soonest first pure, on any list. */
 export function upcomingFrom(
   list: ChurchEvent[],
   from: Date = new Date(),

@@ -25,7 +25,7 @@ interface LiquidMetalHeroProps {
   /** Slower values feel more reverent; 1 is the preset default. */
   speed?: number;
   className?: string;
-  /** Rendered under the CTAs — used for the "next service" strip. */
+  /** Rendered under the CTAs used for the "next service" strip. */
   children?: React.ReactNode;
 }
 

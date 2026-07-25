@@ -313,7 +313,7 @@ export default async function HomePage() {
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
                 Your giving funds the cameras, the streaming, the food parcels
-                and the people who make Sunday happen — here and far beyond our
+                and the people who make Sunday happen here and far beyond our
                 walls.
               </p>
               <div className="mt-9 flex flex-wrap justify-center gap-3">

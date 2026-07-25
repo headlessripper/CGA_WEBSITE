@@ -20,8 +20,8 @@ import {
 
 /**
  * Admin mutations, callable from the Studio's client components. Every one
- * re-checks the Clerk session server-side — the middleware guard is belt, this
- * is braces — and revalidates the public pages so edits appear immediately.
+ * re-checks the Clerk session server-side the middleware guard is belt, this
+ * is braces and revalidates the public pages so edits appear immediately.
  */
 
 async function requireAuth() {

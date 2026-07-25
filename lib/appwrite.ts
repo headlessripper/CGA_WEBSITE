@@ -45,7 +45,7 @@ export function fileViewUrl(fileId: string) {
   return `${filesBase(fileId)}/view?project=${appwrite.projectId}`;
 }
 
-/** Force-download URL — used for the "download the master" links. */
+/** Force-download URL used for the "download the master" links. */
 export function fileDownloadUrl(fileId: string) {
   return `${filesBase(fileId)}/download?project=${appwrite.projectId}`;
 }
@@ -57,7 +57,7 @@ export function fileThumbnailUrl(fileId: string, width = 1600) {
 
 /** Appwrite accepts an ID of up to 36 chars: [A-Za-z0-9._-], no leading punct. */
 export function generateFileId() {
-  // 32 hex chars from a UUID — always starts with a hex digit, always valid.
+  // 32 hex chars from a UUID always starts with a hex digit, always valid.
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
     return crypto.randomUUID().replace(/-/g, "");
   }

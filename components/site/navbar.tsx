@@ -46,7 +46,7 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-5 lg:px-8">
-        <Link href="/" className="shrink-0" aria-label={"Centre of Grace Assembly — home"}>
+        <Link href="/" className="shrink-0" aria-label={"Centre of Grace Assembly home"}>
           <Logo invert={overHero} />
         </Link>
 

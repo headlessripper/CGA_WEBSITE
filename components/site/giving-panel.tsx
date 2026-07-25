@@ -20,7 +20,7 @@ const FUNDS = [
 /**
  * Builds a pre-filled link to the church's giving provider.
  *
- * Card details are never collected here — this hands off to the payment
+ * Card details are never collected here this hands off to the payment
  * processor's own hosted, PCI-compliant page. Set NEXT_PUBLIC_GIVING_URL to
  * the church's real checkout link before launch.
  */

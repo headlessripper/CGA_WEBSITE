@@ -48,7 +48,7 @@ export function MessagePlayer({ message }: { message: Message }) {
         await navigator.share({ title: message.title, url });
         return;
       } catch {
-        // The user dismissed the share sheet — fall through to copying.
+        // The user dismissed the share sheet fall through to copying.
       }
     }
     try {
@@ -62,7 +62,7 @@ export function MessagePlayer({ message }: { message: Message }) {
 
   return (
     <div>
-      {/* Format switch — only shown when both formats exist. */}
+      {/* Format switch only shown when both formats exist. */}
       {hasVideo && hasAudio && (
         <div className="mb-4 flex items-center gap-1 rounded-full bg-muted p-1 sm:w-fit">
           {(["video", "audio"] as const).map((m) => (
@@ -213,7 +213,7 @@ export function MessagePlayer({ message }: { message: Message }) {
       {message.video?.sizeBytes && message.video.sizeBytes > 2 * 1024 ** 3 && (
         <p className="mt-3 text-xs text-muted-foreground">
           This recording is {formatBytes(message.video.sizeBytes)}. Playback
-          streams only as far as you watch — but the download link is the whole
+          streams only as far as you watch but the download link is the whole
           file, so grab it on Wi-Fi. On mobile data, the audio-only version is
           far lighter.
         </p>

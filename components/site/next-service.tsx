@@ -25,7 +25,7 @@ function findNext(services: ServiceTime[], from: Date) {
 /**
  * Live countdown to the next gathering.
  *
- * Rendered only after mount — the server and the visitor are in different time
+ * Rendered only after mount the server and the visitor are in different time
  * zones, so computing this during SSR would guarantee a hydration mismatch.
  */
 export function NextService({

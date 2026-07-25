@@ -122,14 +122,34 @@ export async function Footer() {
 
         <Separator className="my-10 bg-border/60" />
 
-        <div className="flex flex-col items-center justify-between gap-4 text-xs text-muted-foreground sm:flex-row">
-          <p>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
-          <p className="font-display italic">
-            &ldquo;By grace you have been saved, through faith.&rdquo; —
-            Ephesians 2:8
-          </p>
+        <div className="flex flex-col items-center gap-5 text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-foreground"
+            >
+              Privacy Policy
+            </Link>
+            <span aria-hidden className="text-border">
+              |
+            </span>
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-foreground"
+            >
+              Terms of Service
+            </Link>
+          </div>
+
+          <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row">
+            <p>
+              © {new Date().getFullYear()} {site.name}. All rights reserved.
+            </p>
+            <p className="font-display italic">
+              &ldquo;By grace you have been saved, through faith.&rdquo; —
+              Ephesians 2:8
+            </p>
+          </div>
         </div>
       </div>
     </footer>

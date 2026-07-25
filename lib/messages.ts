@@ -1,18 +1,18 @@
 /**
  * Message library.
  *
- * IMPORTANT — how large media is handled here.
+ * IMPORTANT how large media is handled here.
  *
  * A 5–10 GB service recording is never bundled with or served by this app. It
  * is uploaded (from /studio) to an **Appwrite Storage** bucket, and each message
  * points at that file's public view URL (`video.src`). Appwrite honours HTTP
  * range requests, so the browser streams and seeks through a multi-gigabyte
- * recording without downloading it whole — progressive streaming, straight from
+ * recording without downloading it whole progressive streaming, straight from
  * the bucket.
  *
  * Note that Appwrite is object storage, not a transcoder: there is no adaptive
  * bitrate ladder. The low-data path is the separate, compressed audio-only file
- * (`audio.url`) — also stored in Appwrite — surfaced everywhere as "Listen".
+ * (`audio.url`) also stored in Appwrite surfaced everywhere as "Listen".
  *
  * `sizeBytes` is the size of the original file, shown on the download link so
  * people know what they are committing to before tapping it on mobile data.
@@ -20,7 +20,7 @@
  * The demo entries below point at public test media so the site is fully
  * browsable before Appwrite is connected. The player also still accepts an HLS
  * (`.m3u8`) URL in `src`, in case a message is ever served from a transcoding
- * provider. Replace these via /studio — see README.md → "Publishing a message".
+ * provider. Replace these via /studio see README.md → "Publishing a message".
  */
 
 export type MessageFormat = "video" | "audio";
@@ -40,7 +40,7 @@ export interface Message {
   durationSeconds: number;
   formats: MessageFormat[];
   video?: {
-    /** Appwrite file view URL (or an HLS .m3u8 manifest) — the player streams this. */
+    /** Appwrite file view URL (or an HLS .m3u8 manifest) the player streams this. */
     src: string;
     /** Optional force-download URL for the original file. */
     downloadUrl?: string;
@@ -86,10 +86,10 @@ export const messages: Message[] = [
       sizeBytes: 62 * MB,
     },
     notes: [
-      "Grace is not God's response to our movement — it is what makes movement possible.",
+      "Grace is not God's response to our movement it is what makes movement possible.",
       "Dead people cannot cooperate (v.1). That is the whole point of verse 4.",
       "\"But God\" is the hinge the entire chapter turns on.",
-      "Saved by grace, through faith, for good works — never by them.",
+      "Saved by grace, through faith, for good works never by them.",
     ],
     tags: ["grace", "gospel", "foundations"],
     featured: true,
@@ -102,7 +102,7 @@ export const messages: Message[] = [
     date: "2026-07-12",
     scripture: "Psalm 27:13–14",
     summary:
-      "Waiting is not the pause between the seasons of your life. Often it is the season — and God is doing more in it than you can see.",
+      "Waiting is not the pause between the seasons of your life. Often it is the season and God is doing more in it than you can see.",
     thumbnail:
       "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=70",
     durationSeconds: 2410,
@@ -116,7 +116,7 @@ export const messages: Message[] = [
       sizeBytes: 55 * MB,
     },
     notes: [
-      "David says \"I would have despaired\" — the honesty comes before the hope.",
+      "David says \"I would have despaired\" the honesty comes before the hope.",
       "Waiting on the Lord is active: it is strength, courage and expectation.",
       "The land of the living is here, not later.",
     ],
@@ -164,7 +164,7 @@ export const messages: Message[] = [
       sizeBytes: 47 * MB,
     },
     notes: [
-      "Ask, seek, knock — three verbs, one posture.",
+      "Ask, seek, knock three verbs, one posture.",
       "The Father's gift at the end of the passage is the Spirit, not the thing.",
     ],
     tags: ["prayer", "midweek"],
@@ -177,7 +177,7 @@ export const messages: Message[] = [
     date: "2026-06-28",
     scripture: "2 Corinthians 12:7–10",
     summary:
-      "Some things do not get resolved. Paul asked three times and got an answer he did not want — and called it grace anyway.",
+      "Some things do not get resolved. Paul asked three times and got an answer he did not want and called it grace anyway.",
     thumbnail:
       "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1600&q=70",
     durationSeconds: 2210,
@@ -201,7 +201,7 @@ export const messages: Message[] = [
     date: "2026-06-21",
     scripture: "Acts 16:25–34",
     summary:
-      "Midnight, a prison cell, and two men singing. Recorded live at June's Night of Grace — includes forty minutes of unbroken worship.",
+      "Midnight, a prison cell, and two men singing. Recorded live at June's Night of Grace includes forty minutes of unbroken worship.",
     thumbnail:
       "https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?auto=format&fit=crop&w=1600&q=70",
     durationSeconds: 4620,
@@ -308,7 +308,7 @@ export const messages: Message[] = [
 ];
 
 /**
- * Seed library — the fallback used when the Appwrite `messages` collection is
+ * Seed library the fallback used when the Appwrite `messages` collection is
  * empty (fresh clone, or before the team has published anything). The live site
  * reads the database first; see lib/appwrite-server.ts.
  */

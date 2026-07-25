@@ -117,7 +117,7 @@ export function StudioDashboard({
         {tab === "publish" && (
           <Section
             title="Publish a message"
-            description="Upload the recording (and an optional MP3), add the details, and publish — it goes live across the site immediately."
+            description="Upload the recording (and an optional MP3), add the details, and publish it goes live across the site immediately."
           >
             <StudioWorkflow
               speakerOptions={speakerOptions}
@@ -140,7 +140,7 @@ export function StudioDashboard({
         {tab === "content" && (
           <Section
             title="Site content"
-            description="Replace the template copy with the church's own — changes save to the database and appear on the site right away."
+            description="Replace the template copy with the church's own changes save to the database and appear on the site right away."
           >
             <ContentEditor content={content} />
           </Section>

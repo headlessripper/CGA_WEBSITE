@@ -172,7 +172,7 @@ export async function deleteMessageRecord(id: string) {
 
 /**
  * Copies the in-repo seed library into the database, but only into collections
- * that are still empty — so the team gets real, editable records to work from
+ * that are still empty so the team gets real, editable records to work from
  * instead of the read-only template fallback. Safe to call repeatedly.
  */
 export async function importTemplate(): Promise<{

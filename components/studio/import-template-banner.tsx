@@ -34,7 +34,7 @@ export function ImportTemplateBanner({ what }: { what: string }) {
           <span className="font-medium text-foreground">
             These {what} are still the starter template.
           </span>{" "}
-          Import them into the database to edit, reorder or delete them — or just
+          Import them into the database to edit, reorder or delete them or just
           start publishing your own.
           {error && <span className="mt-1 block text-destructive">{error}</span>}
         </p>

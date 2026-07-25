@@ -6,7 +6,7 @@ import { createConnection } from "@/lib/appwrite-server";
  * Receives Connect-page submissions.
  *
  * Right now this validates the payload and logs it. Before launch, replace the
- * `TODO` block with a real destination — Resend / SendGrid for email, or an
+ * `TODO` block with a real destination Resend / SendGrid for email, or an
  * insert into whatever the office already uses. Keep the validation.
  */
 
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }
 
-  // Saved to the private `connections` collection — the pastoral team reads and
+  // Saved to the private `connections` collection the pastoral team reads and
   // clears these from the Studio's Connections inbox.
   try {
     await createConnection(result.data);

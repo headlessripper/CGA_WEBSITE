@@ -149,7 +149,7 @@ export function Uploader({
               </p>
               <p className="mt-2 max-w-sm text-center text-sm text-muted-foreground">
                 Video or audio, any size. The file streams to Appwrite Storage in
-                5 MB chunks straight from this browser — pause it, or let a
+                5 MB chunks straight from this browser pause it, or let a
                 dropped connection resume itself instead of starting over.
               </p>
               <span className="mt-6 rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-ink">
@@ -223,7 +223,7 @@ export function Uploader({
                   {status === "preparing" && "Authorising…"}
                   {status === "uploading" && "Uploading to Appwrite…"}
                   {status === "paused" && "Paused"}
-                  {status === "retrying" && "Connection dropped — retrying…"}
+                  {status === "retrying" && "Connection dropped retrying…"}
                   {status === "done" && "Stored in Appwrite. Details are ready below."}
                   {status === "error" && (error ?? "Upload failed")}
                 </span>

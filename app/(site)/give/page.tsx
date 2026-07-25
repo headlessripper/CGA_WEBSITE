@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Give",
-  description: `Support the work of ${site.name} — locally and beyond.`,
+  description: `Support the work of ${site.name} locally and beyond.`,
 };
 
 export const dynamic = "force-dynamic";
@@ -57,7 +57,7 @@ export default async function GivePage() {
       <PageHeader
         eyebrow="Generosity"
         title="Give, and keep the message going"
-        description="Giving is worship. It is how a church that received grace freely gives it away — in this city and well beyond it."
+        description="Giving is worship. It is how a church that received grace freely gives it away in this city and well beyond it."
       />
 
       <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
@@ -114,7 +114,7 @@ export default async function GivePage() {
                 ))}
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                You can also give in person at any service — envelopes are at
+                You can also give in person at any service envelopes are at
                 the welcome desk.
               </p>
             </Reveal>

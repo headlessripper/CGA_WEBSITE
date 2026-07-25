@@ -1,7 +1,7 @@
 /**
  * Single source of truth for church details.
  * Everything marked PLACEHOLDER must be replaced with the real information
- * before launch — addresses, phone numbers and giving details especially.
+ * before launch addresses, phone numbers and giving details especially.
  */
 
 export const site = {
@@ -106,7 +106,7 @@ export const ministries = [
   {
     title: "Worship & Creative",
     description:
-      "Singers, musicians, media and production — the team that carries the sound and the story of the house.",
+      "Singers, musicians, media and production the team that carries the sound and the story of the house.",
     image:
       "https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?auto=format&fit=crop&w=1200&q=70",
     icon: "Music",
@@ -163,7 +163,7 @@ export const beliefs = [
   },
   {
     title: "Salvation by grace",
-    body: "We believe salvation is the gift of God, received by grace through faith in Jesus Christ alone — never earned.",
+    body: "We believe salvation is the gift of God, received by grace through faith in Jesus Christ alone never earned.",
   },
   {
     title: "The Holy Spirit",
